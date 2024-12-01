@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Control de Productos</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <h1>Control de Productos</h1>
+    <div>
+        <input type="text" id="product-name-input" placeholder="Nombre del producto">
+        <button onclick="comentarProducto()">Comentar Producto</button>
+        <button onclick="descomentarProducto()">Descomentar Producto</button>
+    </div>
+
+    <script>
+        // URL del proyecto original en GitHub Pages
+        const proyectoOriginalURL = 'https://lverapizza.github.io/app-3.0/';
+
+        function comentarProducto() {
+            const productName = document.getElementById('product-name-input').value;
+            enviarMensaje('comentar', productName);
+        }
+
+        function descomentarProducto() {
+            const productName = document.getElementById('product-name-input').value;
+            enviarMensaje('descomentar', productName);
+        }
+
+        function enviarMensaje(accion, productName) {
+            // Abrir una referencia al proyecto original
+            const proyectoOriginal = window.open(proyectoOriginalURL);
+
+            // Enviar mensaje con la acción y el nombre del producto
+            proyectoOriginal.postMessage({ accion, productName }, proyectoOriginalURL);
+        }
+    </script>
+</body>
+</html>
