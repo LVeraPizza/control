@@ -14,10 +14,10 @@
         <button onclick="descomentarProducto()">Descomentar Producto</button>
     </div>
 
-    <script>
-        // URL del proyecto original en GitHub Pages
-        const proyectoOriginalURL = 'https://lverapizza.github.io/app-3.0/productos-ventas.html/';
+    <!-- Cargar productos-ventas.html en un iframe -->
+    <iframe id="productos-frame" src="https://lverapizza.github.io/app-3.0/productos-ventas.html" style="width: 100%; height: 500px; border: 1px solid #ccc;"></iframe>
 
+    <script>
         function comentarProducto() {
             const productName = document.getElementById('product-name-input').value;
             enviarMensaje('comentar', productName);
@@ -29,11 +29,10 @@
         }
 
         function enviarMensaje(accion, productName) {
-            // Abrir una referencia al proyecto original
-            const proyectoOriginal = window.open(proyectoOriginalURL);
+            const iframe = document.getElementById('productos-frame');
 
-            // Enviar mensaje con la acción y el nombre del producto
-            proyectoOriginal.postMessage({ accion, productName }, proyectoOriginalURL);
+            // Enviar mensaje al contenido del iframe
+            iframe.contentWindow.postMessage({ accion, productName }, 'https://lverapizza.github.io/app-3.0/');
         }
     </script>
 </body>
